@@ -13,13 +13,20 @@ const NavBar = ( {toggle} ) => {
             element.classList.add("bx-fade-left")
         });
     }
+    const appear = () =>{
+        let ghosts = document.querySelectorAll('i.bx-ghost');
+        ghosts.forEach(element => {
+            element.classList.remove("bx-fade-left")
+            element.classList.add("bx-tada");
+        });
+    }
   return (
     <section className='nav' >
             <div className="navBarContainer">
                 <Link className="navLogo" to="home" onClick={toggleHome}>
-                    <i className='bx bx-ghost bx-tada' onMouseOver={disappear}></i>
+                    <i className='bx bx-ghost bx-tada' onMouseOver={disappear} onMouseLeave={appear}></i>
                         GhostShell
-                    <i className='bx bx-ghost bx-tada' ></i>
+                    <i className='bx bx-ghost bx-tada' onMouseOver={disappear} onMouseLeave={appear}></i>
                 </Link>
                 <div className="mobileIcon" onClick={toggle}>
                     <i className='bx bx-menu'></i>

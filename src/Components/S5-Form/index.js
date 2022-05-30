@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import images from '../../Images'
 import './index.scss'
+// import axios from 'axios';
 
 function FormS5(){
 
@@ -26,23 +27,41 @@ function FormS5(){
     const [success,setSuccess] = useState(false)
 
     useEffect(() => {
-        const result = NAME_REGEX.test(userContact.name)
-        setValidName(result)
+        console.log("ENTRAMOS AL USEEFFECT DE NAME ANTES DE LA VALIDACION ES ")
+        console.log(isValidName)
+        const resultName = NAME_REGEX.test(userContact.name)
+        setValidName(resultName)
+        console.log("EL VALOR DE isValidName ES ")
+        console.log(isValidName)
     }, [userContact.name,isValidName])
 
     useEffect(() => {
-        const result = PHONE_REGEX.test(userContact.phone)
-        setValidPhone(result)
+        console.log("ENTRAMOS AL USEEFFECT DE PHONE ANTES DE LA VALIDACION ES ")
+        console.log(isValidPhone)
+        const resultPhone = PHONE_REGEX.test(userContact.phone)
+        setValidPhone(resultPhone)
+        console.log("EL VALOR DE isValidPhone ES ")
+        console.log(isValidPhone)
     }, [userContact.phone,isValidPhone])
 
     useEffect(() => {
-        const result = EMAIL_REGEX.test(userContact.email)
-        setValidEmail(result)
+        console.log("ENTRAMOS AL USEEFFECT DE EMAIL ANTES DE LA VALIDACION ES ")
+        console.log(isValidEmail)
+        const resultEmail = EMAIL_REGEX.test(userContact.email)
+        setValidEmail(resultEmail)
+        console.log("EL VALOR DE isValidMail ES ")
+        console.log(isValidEmail)
     }, [userContact.email,isValidEmail])
 
     useEffect(() => {
-        console.log("EL VALOR DE SUCCESS ANTES DE LA VALIDACION ES")
+        console.log("EL VALOR DE SUCCESS ANTES DE LA VALIDACION ES ")
         console.log(success)
+        console.log("EL VALOR DE isValidName ES ")
+        console.log(isValidName)
+        console.log("EL VALOR DE isValidPhone ES ")
+        console.log(isValidPhone)
+        console.log("EL VALOR DE isValidMail ES ")
+        console.log(isValidEmail)
         // isValidName && isValidPhone && isValidEmail ? setSuccess(true) : setSuccess(false)
         if(isValidName && isValidPhone && isValidEmail){
             console.log("Entramos para cambiar success a true")
@@ -85,6 +104,23 @@ function FormS5(){
                     }) 
     }
 
+    const pruebaFuncionTimeOut = (response,json) =>{
+        console.log("Entramos en la funciona para la espera")
+        if(response?.status === 500){
+            console.log("ENTRAMOS AL IF Y CAMBIAMOS EL SUCCESS A FALSE") 
+            setSuccess(false)
+            console.log(success)
+            setErrMsg("No hay conexion con el Servidor")
+            console.log(errMsg)
+            displayMsg(errMsg)
+            return
+        } 
+        
+        console.log(json)
+        displayMsg()          
+        document.getElementById("contact-form").reset();
+    }
+
     const sendData = async event => {
         console.log(success)
         event.preventDefault()
@@ -112,24 +148,16 @@ function FormS5(){
                 let response = await fetch('http://localhost/contactPin/public/index.php/api/RegisterContact',config)
                 let json = await response.json()
                 console.log(response.status)
-                if(response?.status === 500){
-                    console.log("ENTRAMOS AL IF Y CAMBIAMOS EL SUCCESS A FALSE") 
-                    setSuccess(false)
-                    console.log(success)
-                    setErrMsg("No hay conexion con el Servidor")
-                    console.log(errMsg)
-                    displayMsg(errMsg)
-                    return
-                } 
                 
-                console.log(json)
-                displayMsg()          
-                document.getElementById("contact-form").reset();
+                setTimeout(pruebaFuncionTimeOut(response,json), 5000)
+                
             } catch (err) {
                 console.log("ENTRAMOS AL CATCH") 
+                console.log("Valor de SUCCESS ", success)
                 if(!err?.response || err.response?.status === 500){
                     console.log("ENTRAMOS AL IF Y CAMBIAMOS EL SUCCESS A FALSE") 
                     setSuccess(false)
+                    console.log("Valor de SUCCESS ", success)
                     setErrMsg("No hay conexion con el Servidor")
                     displayMsg(errMsg)
                 } 
