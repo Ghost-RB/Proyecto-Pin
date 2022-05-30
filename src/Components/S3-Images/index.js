@@ -16,7 +16,7 @@ import './index.scss'
 function Images(){
     return(
         <section id="discover" className='slider-container'>
-            <Carousel cols={2} rows={2} gap={0} containerClassName="pruebaCarouselGrid" 
+            <Carousel cols={2} rows={2} gap={0} containerClassName="pruebaCarouselGrid" loop={true}
             className="slider-carousel">
                 <Carousel.Item>
                     {/* <img className="d-block img-fluid ghostsImgCarousel" src={images.ghost1} alt="First slide"/> */}
