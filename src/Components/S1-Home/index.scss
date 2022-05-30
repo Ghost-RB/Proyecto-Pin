@@ -1,0 +1,204 @@
+/*
+                    ****************************************************************
+                                    ESTE ES EL ARCHIVO SASS DEL LANDING
+                    ****************************************************************
+*/
+@keyframes darkBtn {
+    20% {box-shadow: 0px 0px 15px #000 inset;}
+    
+}
+/*
+                    ****************************************************************
+                                            CONTAINER GENERAL
+                    ****************************************************************
+*/
+.landing-container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    color: #FFFF;
+    opacity: 1;
+}
+
+
+/*
+                    ****************************************************************
+                                            TEXT & BUTTON CONTAINER
+                    ****************************************************************
+*/
+#landing-h1{
+    // font:normal normal 600 48px/48px poppins;
+    font: normal normal 400 48px/48px Creepster;
+    color: #01bf71;
+    letter-spacing: 0.67px;
+    height: 115px;
+    width: 554px;
+}
+// si cambio de font family hay que sacar el width font y margin bottom
+#landing-p{
+    // font:normal normal 500 16px/21px roboto;
+    // width: 343px;
+    font:normal normal 500 24px/21px Creepster;
+    width: 400px;
+    margin-bottom: 32px;
+    color: #01bf71;
+    height: 42px;
+    letter-spacing: 0.22px;
+    text-align: left;
+}
+#landing-btn{
+    width: 144px;
+    height: 48px;
+    border-radius: 25px;
+    border: #000;
+    color: #000;
+    // font: normal normal 500 16px/21px roboto;
+    font: normal normal 500 16px/21px Creepster;
+    letter-spacing: 0.22px;
+    // animation: darkBtn 2s infinite;
+
+    &:hover{
+        background-color: #000;
+        color: #01bf71;
+        border: none;
+    }
+}
+
+
+/*
+                    ****************************************************************
+                                                CAROUSEL
+                    ****************************************************************
+*/
+
+.landing-carousel{
+    margin-top:80px;
+    width: 100%;
+    height: 100%;
+}
+.landing-carousel .carousel-caption{
+    width: 100%;
+    height: 100%;
+    display: flex;  
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background: transparent;
+    row-gap: 1rem;
+    z-index: 1;
+    left: 10%;
+}
+.landing-carousel .img-fluid {
+    width:100%;
+    height: 100vh;
+    object-fit: cover;
+    // object-fit: fill;
+    filter: brightness(30%);
+    // filter: blur(2px);
+}
+.landing-carousel .carousel-indicators{
+    top:80%;
+    padding-left:10%;
+    margin: 0;
+    width: 100%;
+    height: 8px;
+    justify-content: flex-start;
+}
+.landing-carousel .carousel-indicators button{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 3.5px;
+    opacity: 1;
+    z-index: 15;
+}
+.landing-carousel button.active{
+    background: #01bf71 0% 0% no-repeat padding-box;
+    // border: 1px solid #fff;
+    width: 8px;
+    height: 8px;
+    opacity: 1;
+}
+
+@media screen and (max-width: 960px){
+    .landing-carousel .carousel-caption{
+        align-items: center;
+        // top: 30%;
+        left: 0;
+        row-gap: 0;
+    }
+    #landing-h1{
+        font-size: 36px;
+        text-align: center;
+        width: 550px;
+        margin: 0;
+    }
+    #landing-p{
+        text-align: center;
+    }
+    #landing-btn{
+        margin-top: 3%;
+    }
+    .landing-carousel .carousel-indicators{
+        top:90%;
+        left:47.1%;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .landing-div{
+        top: 20%;
+    }
+    
+    .landing-carousel .carousel-indicators{
+        top:93%;
+        left:46.2%;
+    }   
+}
+@media screen and (max-width: 600px){
+    #landing-h1{
+        font-size: 24px;
+        height: 4rem;
+    }
+    #landing-p{
+        top: 10%;
+    }
+    #landing-btn{
+          height: 36px;  
+    }
+    .landing-carousel .carousel-indicators{
+        top:90%;
+        left: 45%;
+    }
+}
+@media screen and (max-width: 450px){
+    #landing-h1{
+        font-size: 20px;
+        height: 3rem;
+    }
+    // si cambio de font family hay que sacar el margin bottom
+    #landing-p{
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+    .landing-carousel .carousel-indicators{
+        top:90%;
+        left: 44%;
+    }
+}
+@media screen and (max-width: 380px){
+    #landing-h1{
+        font-size: 16px;
+    }
+    // si cambio de font family hay que sacar el width y el margin bottom
+    #landing-p{
+        font-size: 10px;
+        margin-bottom: 1px;
+        width: 300px ;
+    }
+    .landing-carousel .carousel-indicators{
+        top:88%;
+        left: 43.5%;
+    }
+}

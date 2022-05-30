@@ -1,0 +1,127 @@
+/*
+                    ****************************************************************
+                                    ESTE ES EL ARCHIVO SASS DE LA DESCRIPCION
+                    ****************************************************************
+*/
+
+/*
+                    ****************************************************************
+                                            CONTAINER GENERAL
+                    ****************************************************************
+*/
+.description-container{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(0,0,0) 66%, rgba(107,185,89,1) 73%);
+}
+.descGhost{
+    width: 100%;
+    height: fit-content;
+    // max-width: 862px;
+    // max-height: 768px;
+}
+.description-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px 0 43% ;
+    right: 10px;
+}
+.primary-h2{
+    // height: 55px;
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    justify-self: center;
+    color: #343434;
+}
+.secondary-h2{
+    // height: 55px;
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    justify-self: center;
+}
+#description-p{
+    text-align: left;
+    width: fit-content;
+    // font: normal normal normal 16px/28px Roboto;
+    font: normal normal normal 16px/28px Creepster;
+    letter-spacing: 0.22px; 
+    color: #000;
+    // filter: brightness(40%);
+    // background: linear-gradient(90deg,#01bf71 39.9%, #000 41.3%);
+    // background-clip: text;
+    // -webkit-text-fill-color: transparent;
+}
+
+@media screen and (max-width: 960px){
+    #description-p{
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .description-container{
+        background: linear-gradient(90deg, rgba(0,0,0) 60%, rgba(107,185,89,1) 73%);
+    }
+    .description-div{
+        padding-left: 30%;
+    }
+    .secondary-h2{
+        margin-bottom: 0;
+    }
+}
+@media screen and (max-width: 600px){
+    .description-container{
+        background: linear-gradient(90deg, rgba(0,0,0) 50%, rgba(107,185,89,1) 73%);
+    }
+    .description-div{
+        padding-left: 15%;
+    }
+    .primary-h2{
+        font-size: 28px;
+        margin-bottom: 0;
+        height: 80px;
+    }
+    .secondary-h2{
+        font-size: 24px;
+        height: 80px;
+    }
+    #description-p{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 450px){
+    .primary-h2{
+        font-size: 22px;
+        height: fit-content;
+    }
+    .secondary-h2{
+        font-size: 18px;
+        height: fit-content;
+    }
+    #description-p{
+        font-size: 10.5px;
+    }
+}
+@media screen and (max-width: 380px){
+    .primary-h2{
+        font-size: 16px;
+        line-height: 14px;
+        height: fit-content;
+    }
+    .secondary-h2{
+        font-size: 12px;
+        height: 35px;
+    }
+    #description-p{
+        font-size: 9px;
+    }
+}

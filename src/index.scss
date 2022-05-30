@@ -1,0 +1,46 @@
+/*
+                    ****************************************************************
+                            ESTE ES EL ARCHIVO SASS PRINCIPAL GENERAL
+                    ****************************************************************
+*/
+
+$primary: #01bf71;
+$dark: #343434;
+$font-family-base: Roboto;
+$carousel-caption-color: black;
+$carousel-indicator-active-bg: black;
+$carousel-control-color: black;
+$accordion-icon-color:#000;
+@import '~bootstrap/scss/bootstrap.scss'; //LA SIGUIENTE LINEA IMPORTA BOOTSTRAP
+
+/*
+body{
+  text-align: center; 
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}*/
+// .app{
+//   @media screen and (max-width: 960px){
+//     transition: 0.8s all ease;
+//     width: 100vw;
+//   }
+// }
+body{
+  text-align: center; 
+  // background-color: #ffff;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color:#343434;
+  min-width: 310px;
+}
+
+ul{
+  list-style-type: none;
+}
+
