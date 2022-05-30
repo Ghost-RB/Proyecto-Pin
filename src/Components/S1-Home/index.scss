@@ -32,7 +32,7 @@
     color: #01bf71;
     letter-spacing: 0.67px;
     height: 115px;
-    width: 554px;
+    max-width: 554px;
 }
 // si cambio de font family hay que sacar el width font y margin bottom
 #landing-p{
@@ -130,7 +130,6 @@
     #landing-h1{
         font-size: 36px;
         text-align: center;
-        width: 550px;
         margin: 0;
     }
     #landing-p{
