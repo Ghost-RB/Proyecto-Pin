@@ -34,7 +34,11 @@
     max-width: 320px;  
 }
 .card-img, .card-img-bottom,.card-img, .card-img-top{
-    border: none;
+    border: none !important;
+    border-bottom-left-radius:none;
+    border-bottom-right-radius:none;
+    border-top-left-radius:none;
+    border-top-right-radius:none;
 }
 .card-ImgOverlay{
     display: none;
