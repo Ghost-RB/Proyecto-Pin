@@ -94,12 +94,16 @@
 }
 
 @media screen and (max-width: 768px){
+    .etbmwA{
+        display: block;
+    }
     .hFYWLZ {
         grid-template-columns: repeat(2,1fr);
         grid-template-rows: repeat(2,1fr);
         grid-gap: 0px;
     }
-    .cmEgHU {
+    .cmEgHU,
+    .jMqtcF{
         grid-template-columns: repeat(2,100%);
     }
     .slider-div{
