@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from 'react'
-import {Form, FloatingLabel, Button, Alert} from 'react-bootstrap'
+import { useState, useEffect } from 'react'
+import {Form, FloatingLabel, Button } from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import images from '../../Images'
@@ -23,67 +23,52 @@ function FormS5(){
     const [isValidName,setValidName] = useState(false)
     const [isValidPhone,setValidPhone] = useState(false)
     const [isValidEmail,setValidEmail] = useState(false)
+    const [isFocus,setFocus] = useState(false)
     const [errMsg,setErrMsg] = useState('')
     const [success,setSuccess] = useState(false)
 
     useEffect(() => {
-        console.log("ENTRAMOS AL USEEFFECT DE NAME ANTES DE LA VALIDACION ES ")
-        console.log(isValidName)
         const resultName = NAME_REGEX.test(userContact.name)
         setValidName(resultName)
-        console.log("EL VALOR DE isValidName ES ")
-        console.log(isValidName)
+        if(isValidName){
+            displayMsg("The name is valid!", "congrats")
+        }
     }, [userContact.name,isValidName])
 
     useEffect(() => {
-        console.log("ENTRAMOS AL USEEFFECT DE PHONE ANTES DE LA VALIDACION ES ")
-        console.log(isValidPhone)
+        
         const resultPhone = PHONE_REGEX.test(userContact.phone)
         setValidPhone(resultPhone)
-        console.log("EL VALOR DE isValidPhone ES ")
-        console.log(isValidPhone)
+        if(isValidPhone){
+            displayMsg("The phone is valid!", "congrats")
+        }
     }, [userContact.phone,isValidPhone])
 
     useEffect(() => {
-        console.log("ENTRAMOS AL USEEFFECT DE EMAIL ANTES DE LA VALIDACION ES ")
-        console.log(isValidEmail)
         const resultEmail = EMAIL_REGEX.test(userContact.email)
         setValidEmail(resultEmail)
-        console.log("EL VALOR DE isValidMail ES ")
-        console.log(isValidEmail)
+        if(isValidEmail){
+            displayMsg("The email is valid!", "congrats")
+        }
     }, [userContact.email,isValidEmail])
 
     useEffect(() => {
-        console.log("EL VALOR DE SUCCESS ANTES DE LA VALIDACION ES ")
-        console.log(success)
-        console.log("EL VALOR DE isValidName ES ")
-        console.log(isValidName)
-        console.log("EL VALOR DE isValidPhone ES ")
-        console.log(isValidPhone)
-        console.log("EL VALOR DE isValidMail ES ")
-        console.log(isValidEmail)
         // isValidName && isValidPhone && isValidEmail ? setSuccess(true) : setSuccess(false)
         if(isValidName && isValidPhone && isValidEmail){
             console.log("Entramos para cambiar success a true")
             setSuccess(true)
-            console.log(success)
         }else if (success === true){
             console.log("Entramos para cambiar success a false")
             setSuccess(false)
         }else{
             console.log("No hacemos nada ya que success es falso ya")
-            console.log(success)
         }
-        
-        
-        console.log("EL VALOR DE SUCCESS LUEGO DE LA VALIDACION ES")
-        console.log(success)
     }, [isValidName,isValidPhone,isValidEmail])
 
 
-    const displayMsg = (msg) => {
-            success
-                ?   toast.success('The contact request has been sent successfully! We will get in touch as soon as possible', 
+    const displayMsg = (msg,intention) => {
+        if(intention === "msgSent"){
+            toast.success('The contact request has been sent successfully! We will get in touch as soon as possible', 
                 {
                     position: "bottom-center",
                     autoClose: 5000,
@@ -93,7 +78,9 @@ function FormS5(){
                     draggable: true,
                     progress: undefined,
                 })
-                :   toast.error(`${msg}`, {
+        }else if(intention === "congrats"){
+            toast.success(`${msg}`, 
+                {
                     position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -101,7 +88,19 @@ function FormS5(){
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    }) 
+                })
+        }else{
+            toast.error(`${msg}`, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
+        }
+           
     }
 
     const pruebaFuncionTimeOut = (response,json) =>{
@@ -112,12 +111,12 @@ function FormS5(){
             console.log(success)
             setErrMsg("No hay conexion con el Servidor")
             console.log(errMsg)
-            displayMsg(errMsg)
+            displayMsg(errMsg,"error")
             return
         } 
         
         console.log(json)
-        displayMsg()          
+        displayMsg("","msgSent")          
         document.getElementById("contact-form").reset();
     }
 
@@ -132,7 +131,7 @@ function FormS5(){
         if (!v1 || !v2 || !v3){
             setSuccess(false)
             setErrMsg("Hubo un error en los datos. No se pueden cargar ");
-            displayMsg(errMsg)
+            displayMsg(errMsg,"error")
             return;
         }else{
             try {
@@ -147,20 +146,27 @@ function FormS5(){
     
                 let response = await fetch('http://localhost/contactPin/public/index.php/api/RegisterContact',config)
                 let json = await response.json()
+                console.log("La respuesta es ")
                 console.log(response.status)
                 
                 setTimeout(pruebaFuncionTimeOut(response,json), 5000)
                 
             } catch (err) {
                 console.log("ENTRAMOS AL CATCH") 
-                console.log("Valor de SUCCESS ", success)
-                if(!err?.response || err.response?.status === 500){
-                    console.log("ENTRAMOS AL IF Y CAMBIAMOS EL SUCCESS A FALSE") 
-                    setSuccess(false)
-                    console.log("Valor de SUCCESS ", success)
-                    setErrMsg("No hay conexion con el Servidor")
-                    displayMsg(errMsg)
-                } 
+                console.log("EL ERROR", err)
+                console.log("ERROR RESPONSE ", err.response)
+                setSuccess(false)
+                setErrMsg(err)
+                displayMsg(errMsg,"error")
+                // console.log("ERROR RESPONSE STATUS ", err.response.status)
+                // if(!err?.response || err.response?.status === 500){
+                //     console.log("ENTRAMOS AL IF Y CAMBIAMOS EL SUCCESS A FALSE") 
+                //     setSuccess(false)
+                //     console.log("Valor de SUCCESS LUEGO DEL SET", success)
+                //     setErrMsg("No hay conexion con el Servidor")
+                //     console.log(errMsg)
+                //     displayMsg(errMsg)
+                // } 
             }
         }
 
@@ -218,7 +224,7 @@ function FormS5(){
                         pauseOnFocusLoss
                         draggable
                         pauseOnHover
-                        limit={2}
+                        limit={1}
                         theme={"dark"}  
                     />
                 </Form>
