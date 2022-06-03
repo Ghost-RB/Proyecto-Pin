@@ -93,13 +93,15 @@
     
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
+    //CORRESPONDE A LAS FLECHAS DEL CAROUSEL
     .etbmwA{
         display: block;
     }
+    //CONTENEDORES DE LA CUADRICULA DE LAS TARJETAS DEL CAROUSEL 
     .hFYWLZ {
-        grid-template-columns: repeat(2,1fr);
-        grid-template-rows: repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr) !important;
+        grid-template-rows: repeat(2,1fr) !important;
         grid-gap: 0px;
     }
     .cmEgHU,
