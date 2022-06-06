@@ -98,12 +98,13 @@
     .etbmwA{
         display: block;
     }
-    //CONTENEDORES DE LA CUADRICULA DE LAS TARJETAS DEL CAROUSEL 
+    //CONTENEDOR DE LA CUADRICULA DE LAS TARJETAS DEL CAROUSEL 
     .hFYWLZ {
         grid-template-columns: repeat(2,1fr) !important;
         grid-template-rows: repeat(2,1fr) !important;
         grid-gap: 0px;
     }
+    //LAS CUADRICULAS DE LAS TARJETAS DEL CAROUSEL
     .cmEgHU,
     .jMqtcF{
         grid-template-columns: repeat(2,100%);
