@@ -23,33 +23,39 @@ function FormS5(){
     const [isValidName,setValidName] = useState(false)
     const [isValidPhone,setValidPhone] = useState(false)
     const [isValidEmail,setValidEmail] = useState(false)
-    const [isFocus,setFocus] = useState(false)
+    const [showMsg,setShowMsg] = useState(false)
     const [errMsg,setErrMsg] = useState('')
     const [success,setSuccess] = useState(false)
 
     useEffect(() => {
         const resultName = NAME_REGEX.test(userContact.name)
         setValidName(resultName)
-        if(isValidName){
-            displayMsg("The name is valid!", "congrats")
-        }
+        // if(isValidName && showMsg){
+        //     displayMsg("The name is valid!", "congrats")
+        //     setShowMsg(false)
+        // }
+        setShowMsg(isValidName)
     }, [userContact.name,isValidName])
 
     useEffect(() => {
         
         const resultPhone = PHONE_REGEX.test(userContact.phone)
         setValidPhone(resultPhone)
-        if(isValidPhone){
-            displayMsg("The phone is valid!", "congrats")
-        }
+        // if(isValidPhone){
+        //     displayMsg("The phone is valid!", "congrats")
+        //     setShowMsg(false)
+        // }
+        setShowMsg(isValidPhone)
     }, [userContact.phone,isValidPhone])
 
     useEffect(() => {
         const resultEmail = EMAIL_REGEX.test(userContact.email)
         setValidEmail(resultEmail)
-        if(isValidEmail){
-            displayMsg("The email is valid!", "congrats")
-        }
+        // if(isValidEmail){
+        //     displayMsg("The email is valid!", "congrats")
+        //     setShowMsg(false)
+        // }
+        setShowMsg(isValidEmail)
     }, [userContact.email,isValidEmail])
 
     useEffect(() => {
