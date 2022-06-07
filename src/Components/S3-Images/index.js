@@ -22,16 +22,16 @@ function Images(){
     
     window.addEventListener('resize', function(event){
         const viewPortWidth = window.innerWidth
-        console.log("ENTRAMOS AL EVENT LISTENER CON VIEWPORT ", viewPortWidth)
+        // console.log("ENTRAMOS AL EVENT LISTENER CON VIEWPORT ", viewPortWidth)
         if (viewPortWidth > 600){
-            console.log("ENTRAMOS AL IF PORQUE ES 600")
+            // console.log("ENTRAMOS AL IF PORQUE ES 600")
             setSlideToView(3)
         }else if(viewPortWidth > 450 && viewPortWidth <= 600){
             setSlideToView(2)
         }else{
             setSlideToView(1)
         }
-        console.log("SLIDE TO VIEW ", slideToView)
+        // console.log("SLIDE TO VIEW ", slideToView)
     },true)
    
     
